@@ -10,6 +10,12 @@ app.use(bodyParser.json())
 connection()
 app.use('/api/user', userRoutes)
 
+
+
+
+
+
+
 app.listen(port, ()=>{
     console.log(`server is running at ${port}..........`);
 })
