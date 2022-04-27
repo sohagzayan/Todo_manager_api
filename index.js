@@ -17,6 +17,7 @@ app.use("/api/todo", todoRoutes);
 /* user routes */
 app.use("/api/user", userRoutes);
 
+/* its test route */
 app.get('/', (req , res)=>{
     res.status(200).json("hello this is user route")
 })
