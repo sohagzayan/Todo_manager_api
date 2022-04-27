@@ -5,10 +5,12 @@ const userRoutes = require("./routes/userRoutes");
 const bodyParser = require("body-parser");
 const connection = require("./connections/connection");
 const todoRoutes = require("./routes/todoRoutes");
+const cors = require("cors")
 const port = process.env.PORT || 5000;
 dotenv.config();
 /* middleWere */
 app.use(bodyParser.json());
+app.use(cors())
 /* mongoDb connection */
 connection();
 
