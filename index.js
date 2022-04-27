@@ -17,6 +17,10 @@ app.use("/api/todo", todoRoutes);
 /* user routes */
 app.use("/api/user", userRoutes);
 
+app.get('/', (req , res)=>{
+    res.status(200).json("hello this is user route")
+})
+
 app.listen(port, () => {
   console.log(`server is running at ${port}..........`);
 });
