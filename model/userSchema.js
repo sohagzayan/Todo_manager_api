@@ -21,6 +21,12 @@ const userSchema = mongoose.Schema({
         type : Date,
         default : Date.now
     },
+    todo : [
+        {
+            type : mongoose.Types.ObjectId,
+            ref : 'Todo'
+        }
+    ]
 })
 
 module.exports = mongoose.model("User" , userSchema)

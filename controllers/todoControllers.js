@@ -1,16 +1,23 @@
 const Todo = require('../model/todoSchema')
+const User = require('../model/userSchema')
+
+
 
 /* createTodo todo callBack */
-
 exports.todoCreate = async(req , res)=>{
    try{
        const newTodo = await new Todo({
         title : req.body.title,
         des : req.body.des,
-        status : req.body.status
+        status : req.body.status,
+        user : req.userId
        })
-
-       await newTodo.save()
+       const updatedTodo = await newTodo.save()
+       await User.updateOne({_id : req.userId}, {
+           $push : {
+               todo : updatedTodo._id
+           }
+       })
        res.status(200).json(newTodo)
    }
    catch(err){
@@ -22,7 +29,7 @@ exports.todoCreate = async(req , res)=>{
 
 exports.todoFind = async (req , res)=>{
     try{
-        const todos = await Todo.find()
+        const todos = await Todo.find().populate('user')
         res.status(200).json(todos)
     }
     catch(err){
